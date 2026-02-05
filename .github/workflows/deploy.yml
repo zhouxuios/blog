@@ -1,0 +1,41 @@
+name: GitHub Pages and Remote Server Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9 # Node 22 建议搭配最新的 pnpm 9
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22 # 👈 完美匹配你本地环境
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build Project
+        run: pnpm run build
+
+      # ... 后续部署到 GitHub Pages 和 远程服务器 的步骤保持不变 ...
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.vitepress/dist
+          enable_jekyll: false 
+
+    
