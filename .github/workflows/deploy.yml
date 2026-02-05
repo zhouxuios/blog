@@ -15,8 +15,8 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9 # Node 22 建议搭配最新的 pnpm 9
+        # with:
+          #version: 9 # Node 22 建议搭配最新的 pnpm 9  不指定版本,和 package.json 冲突
 
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
