@@ -5,6 +5,9 @@ export default defineConfig({
   title: "chris's blog",
   description: "个人博客",
   base: '/blog/',
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/blod/favicon.svg' }]
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
